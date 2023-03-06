@@ -137,7 +137,7 @@ def load_messages(channel_id):
             user_name = None
             for user in users:
                 if user['id'] == user_id:
-                    user_name = user['profile']['real_name']
+                    user_name = user['name']
                     break
             if user_name is None:
                 user_name = user_id
