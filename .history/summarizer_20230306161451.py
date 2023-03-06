@@ -21,7 +21,7 @@ def summarize(text):
         temperature=0.5,
         messages=[
             {"role": "system", "content": "チャットログのフォーマットは発言者: 本文\\nになっている。\\nは改行を表しています。これを踏まえて指示に従います"},
-            {"role": "user", "content": f"下記のチャットログを箇条書きで少し丁寧に要約してください（日本語で）。。1行ずつの説明ではありません。全体を要約してください。\n\n{text}"}
+            {"role": "user", "content": f"下記のチャットログを箇条書きで少し丁寧に要約してください。。1行ずつの説明ではありません。全体として短く。\n\n{text}"}
         ]
     )
     return response["choices"][0]["message"]['content']
