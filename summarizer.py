@@ -58,6 +58,7 @@ try:
     channels_info = client.conversations_list(
         types="public_channel",
         exclude_archived=True,
+        limit=1000
     )
     channels = [channel for channel in channels_info['channels']
                 if not channel["is_archived"] and channel["is_channel"]]
@@ -95,7 +96,7 @@ def load_messages(channel_id):
         else:
             print("Error : {}".format(e))
             return None
-
+    time.sleep(3)
     # messages = result["messages"]
     messages = list(filter(lambda m: "subtype" not in m, result["messages"]))
 
@@ -105,6 +106,7 @@ def load_messages(channel_id):
     messages_text = []
 
     while result["has_more"]:
+        time.sleep(3)
         result = client.conversations_history(
             channel=channel_id,
             oldest=start_time.timestamp(),
