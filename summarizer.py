@@ -17,8 +17,8 @@ openai.api_key = str(os.environ.get('OPEN_AI_TOKEN')).strip()
 
 def summarize(text):
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        temperature=0.5,
+        model="gpt-4",
+        temperature=1.0,
         messages=[
             {"role": "system", "content": "チャットログのフォーマットは発言者: 本文\\nになっている。\\nは改行を表しています。これを踏まえて指示に従います"},
             {"role": "user", "content": f"下記のチャットログを箇条書きで少し丁寧に要約してください（日本語で）。。1行ずつの説明ではありません。全体を要約してください。\n\n{text}"}
@@ -32,7 +32,7 @@ TOKEN = str(os.environ.get('SLACK_BOT_TOKEN')).strip()
 CHANNEL_ID = str(os.environ.get('SLACK_POST_CHANNEL_ID')).strip()
 
 # 取得する期間を計算する
-HOURS_BACK = 25
+HOURS_BACK = 12
 JST = pytz.timezone('Asia/Tokyo')
 now = datetime.now(JST)
 yesterday = now - timedelta(hours=HOURS_BACK)
